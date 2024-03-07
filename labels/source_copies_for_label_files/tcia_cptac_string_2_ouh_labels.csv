@@ -1,0 +1,46 @@
+Tumor_Histological_Type,cancerSubtype,adenocarcinomaMusin,cancerSubtypeOtherSpecify,adenocarcinomaGrade,adenocarcinomaInvasiveness,adenocarcinomaPredominantPattern,secondPredominantPattern,adenocarcinoma-All-Patterns-Including-Predominant,STAS,sqccKeratinization
+Acinar adenocarcinoma,adenocarcinoma,unknown,,unknown,unknown,acinar,unknown,acinar,unknown,no
+Acinar adenocarcinoma and papillary adenocarcinoma,adenocarcinoma,unknown,,unknown,unknown,acinar,papillary,acinar-papillary,unknown,no
+Acinar-papillary adenocarcinoma,adenocarcinoma,unknown,,unknown,unknown,acinar,papillary,acinar-papillary,unknown,no
+Adenocarcinoma,adenocarcinoma,unknown,,unknown,unknown,unknown,unknown,,unknown,no
+adenocarcinoma with neuroendocrine differentiation,adenocarcinoma,unknown,,unknown,unknown,unknown,unknown,,unknown,no
+"Adenocarcinoma, 60% acinic subtype, 40% micropapillary subtype, STAS (+)",adenocarcinoma,unknown,,unknown,unknown,acinar,unknown,acinar-micropapillary,yes,no
+"Adenocarcinoma, 70% acinic subtype, 30% papillary subtype, STAS(-).",adenocarcinoma,unknown,,unknown,unknown,acinar,unknown,acinar-papillary,no,no
+"Adenocarcinoma, 70% solid subtype, 30% acinic subtype, STAS(-).",adenocarcinoma,unknown,,unknown,unknown,solid,unknown,solid-acinar,no,no
+"Adenocarcinoma, 90% acinic subtype, 10% papillary subtype, STAS(-)",adenocarcinoma,unknown,,unknown,unknown,acinar,unknown,acinar-papillary,no,no
+"Adenocarcinoma, acinar and papillary predominant.",adenocarcinoma,unknown,,unknown,unknown,acinar,papillary,acinar-papillary,unknown,no
+"Adenocarcinoma, acinar predominant",adenocarcinoma,unknown,,unknown,unknown,acinar,unknown,acinar,unknown,no
+"Adenocarcinoma, acinar predominant (50%), papillary (10%), micropapillary (10%), mucinous (30%)",adenocarcinoma,mucinous,,unknown,unknown,acinar,unknown,acinar-papillary-micropapillary-mucinous,unknown,no
+"Adenocarcinoma, acinic subtype",adenocarcinoma,unknown,,unknown,unknown,acinar,unknown,acinar,unknown,no
+"Adenocarcinoma, micropapillary and acinar",adenocarcinoma,unknown,,unknown,unknown,micropapillary,acinar,micropapillary-acinar,unknown,no
+"Adenocarcinoma, mixed subtype",adenocarcinoma,unknown,,unknown,unknown,unknown,unknown,,unknown,no
+"Adenocarcinoma, mixed subtype (acinar, mucinous and papillary)",adenocarcinoma,mucinous,,unknown,unknown,unknown,unknown,acinar-mucinous-papillary,unknown,no
+"Adenocarcinoma, mixed subtype (acinar, mucinous, lepidic, papillary)",adenocarcinoma,mucinous,,unknown,unknown,unknown,unknown,acinar-mucinous-lepidic-papillary,unknown,no
+"Adenocarcinoma, mixed subtype (papillary and acinar)",adenocarcinoma,unknown,,unknown,unknown,papillary,acinar,acinar-papillary,unknown,no
+"Adenocaricnoma, mixed sub-type (solid and acinar)",adenocarcinoma,unknown,,unknown,unknown,solid,acinar,acinar-solid,unknown,no
+Adenosquamous carcinoma,adenosquamous carcinoma,unknown,,unknown,unknown,unknown,unknown,,unknown,unknown
+"Adenosquamous carcinoma (approx. 75% adeno, 25% squamous)",adenosquamous carcinoma,unknown,,unknown,unknown,unknown,unknown,,unknown,unknown
+Adenosquamous Carcinoma; at least 66% squamous component,adenosquamous carcinoma,unknown,,unknown,unknown,unknown,unknown,,unknown,unknown
+Adenosquamous carcinoma.,adenosquamous carcinoma,unknown,,unknown,unknown,unknown,unknown,,unknown,unknown
+adenosquamous carcinoma,adenosquamous carcinoma,unknown,,unknown,unknown,unknown,unknown,,unknown,unknown
+Basaloid squamous cell carcinoma,squamous cell carcinoma,unknown,,NotApplicable,NotApplicable,NotApplicable,NotApplicable,,unknown,unknown
+Colloid adenocarcinoma,adenocarcinoma,unknown,,unknown,unknown,unknown,unknown,,unknown,no
+Enteric adenocarcinoma,adenocarcinoma,unknown,,unknown,unknown,unknown,unknown,,unknown,no
+Invasive mucinous adenocarcinoma,adenocarcinoma,mucinous,,unknown,invasive,mucinous,unknown,mucinous,unknown,no
+Keratinizing squamous cell carcinoma,squamous cell carcinoma,unknown,,NotApplicable,NotApplicable,NotApplicable,NotApplicable,,unknown,yes
+Lepidic adenocarcinoma,adenocarcinoma,unknown,,unknown,unknown,lepidic,unknown,lepidic,unknown,no
+"Lepidic adenocarcinoma, Invasive mucinous adenocarcinoma",adenocarcinoma,mucinous,,unknown,invasive,lepidic,mucinous,lepidic-mucinous,unknown,no
+Micropapillary adenocarcinoma,adenocarcinoma,unknown,,unknown,unknown,micropapillary,unknown,micropapillary,unknown,no
+Mixed acinar and micropapillary adenocarcinoma,adenocarcinoma,unknown,,unknown,unknown,acinar,micropapillary,acinar-micropapillary,unknown,no
+"Mixed adenocarcinoma, acinar and papillary sub-types",adenocarcinoma,unknown,,unknown,unknown,acinar,papillary,acinar-papillary,unknown,no
+"Mixed adenocarcinoma, mucinous, acinar and papillary sub-types",adenocarcinoma,mucinous,,unknown,unknown,unknown,unknown,acinar-mucinous-papillary,unknown,no
+Mixed invasive mucinous and nonmucinous adenocarcinoma,adenocarcinoma,mixed,,unknown,invasive,unknown,unknown,mucinous,unknown,no
+Mucinous adenocarcinoma,adenocarcinoma,mucinous,,unknown,unknown,mucinous,unknown,mucinous,unknown,no
+Non-keratinizing squamous cell carcinoma,squamous cell carcinoma,unknown,,NotApplicable,NotApplicable,NotApplicable,NotApplicable,,unknown,no
+not specified,unknown,unknown,not specified,unknown,unknown,unknown,unknown,,unknown,unknown
+Papillary adenocarcinoma,adenocarcinoma,unknown,,unknown,unknown,papillary,unknown,papillary,unknown,no
+Solid adenocarcinoma,adenocarcinoma,unknown,,unknown,unknown,solid,unknown,solid,unknown,no
+Spindle cell carcinoma with undifferentiated non small carcinoma,OtherCancer,unknown,Spindle cell carcinoma with undifferentiated non small carcinoma,NotApplicable,NotApplicable,NotApplicable,NotApplicable,,unknown,no
+Squamous cell carcinoma,squamous cell carcinoma,unknown,,NotApplicable,NotApplicable,NotApplicable,NotApplicable,,unknown,unknown
+squamous versus adenocarcinoma pending IHC,unknown,unknown,squamous versus adenocarcinoma pending IHC,unknown,unknown,unknown,unknown,,unknown,unknown
+Benign,Benign,NotApplicable,,NotApplicable,NotApplicable,NotApplicable,NotApplicable,,no,no
