@@ -33,11 +33,11 @@ mapping = {
 ```
 
 DHMC has only LUAD slides, so all entries in the `label` field are 0:
-* [DHMC_20x.csv](labels/dummy_label_files/DHMC_20x.csv)
-* [DHMC_40x.csv](labels/dummy_label_files/DHMC_40x.csv)
+* [DHMC_20x.csv](labels/dummy-label-files/DHMC_20x.csv)
+* [DHMC_40x.csv](labels/dummy-label-files/DHMC_40x.csv)
 
 TCGA has both LUAD and LUSC so entries in the `label` field include 0 and 1:
-* [TCGA-lung-default.csv](labels/dummy_label_files/TCGA-lung-default.csv)
-* [TCGA-lung-ms.csv](labels/dummy_label_files/TCGA-lung-ms.csv)
+* [TCGA-lung-default.csv](labels/dummy-label-files/TCGA-lung-default.csv)
+* [TCGA-lung-ms.csv](labels/dummy-label-files/TCGA-lung-ms.csv)
 
 ### Run the creation code
