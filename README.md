@@ -18,3 +18,26 @@ and `pt` files like in https://github.com/mahmoodlab/CLAM.
 * [tcia_cptac_string_2_ouh_labels.csv](labels/source_copies_for_label_files/tcia_cptac_string_2_ouh_labels.csv) - took unique values from [tcia_cptac_luad_lusc_cohort.csv](labels/source_copies_for_label_files/tcia_cptac_luad_lusc_cohort.csv) and manually mapped to labels
 
 
+### Dummy label files
+
+Columns include the `label` (LUAD vs LUSC) and paths to features:
+* `features_csv_file_path`
+* `h5_file_path`
+* `pt_file_path`
+
+```
+mapping = {
+    "LUAD": 0,
+    "LUSC": 1,
+}
+```
+
+DHMC has only LUAD slides, so all entries in the `label` field are 0:
+* [DHMC_20x.csv](labels/dummy_label_files/DHMC_20x.csv)
+* [DHMC_40x.csv](labels/dummy_label_files/DHMC_40x.csv)
+
+TCGA has both LUAD and LUSC so entries in the `label` field include 0 and 1:
+* [TCGA-lung-default.csv](labels/dummy_label_files/TCGA-lung-default.csv)
+* [TCGA-lung-ms.csv](labels/dummy_label_files/TCGA-lung-ms.csv)
+
+### Run the creation code
