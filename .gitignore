@@ -5,26 +5,26 @@
 __pycache__
 
 # whole-slide images - heavy data
-WSI
-WSI/
-WSI_temp_files/
+./WSI
+./WSI/
+./WSI_temp_files/
 
 # whole-slide images for testing
-data-for-testing-tcga/
+./data-for-testing-tcga/
 
 # precomputed features - heavy data
-datasets
+./datasets
 
 # model weights
-weights/*
+./weights/*
 !weights/init-*.pth
 
 # patch embedders
-embedder/*
+./embedder/*
 
 # class prediction thresholds
-thresholds
+./thresholds
 
 # logs
-logs/
-wandb
+./logs/
+./wandb
