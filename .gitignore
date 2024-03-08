@@ -1,0 +1,30 @@
+.ipynb_checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+*/__pycache__/*
+__pycache__
+
+# whole-slide images - heavy data
+WSI
+WSI/
+WSI_temp_files/
+
+# whole-slide images for testing
+data-for-testing-tcga/
+
+# precomputed features - heavy data
+datasets
+
+# model weights
+weights/*
+!weights/init-*.pth
+
+# patch embedders
+embedder/*
+
+# class prediction thresholds
+thresholds
+
+# logs
+logs/
+wandb
