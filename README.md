@@ -41,3 +41,9 @@ TCGA has both LUAD and LUSC so entries in the `label` field include 0 and 1:
 * [TCGA-lung-ms.csv](labels/dummy-label-files/TCGA-lung-ms.csv)
 
 ### Run the creation code
+
+Run the labels creation code [notebook](labels_creation_code/make_detailed_labels_for_dhmc_tcga_tcia.ipynb).
+The code will create the files in [labels/experiment-label-files/](labels/experiment-label-files/).
+
+**Note, the combined dataset for training/validation is not the same as in the paper since the in-house DART dataset is not publicly available.**
+The test set, however, is the same as in the paper and is fully available in the [8-label task](labels/experiment-label-files/DETAILED_COMBINED_HARD_TEST_LUAD_LUSC_BENIGN.csv) and [5-label task](labels/experiment-label-files/DETAILED_COMBINED_HARD_TEST_LUAD_LUSC_BENIGN_AT_LEAST_ONE_KNOWN_PATTERN.csv).
