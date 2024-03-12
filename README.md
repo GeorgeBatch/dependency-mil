@@ -15,7 +15,7 @@ and `pt` files like in https://github.com/mahmoodlab/CLAM.
 
 * [tcia_cptac_md5sum_hashes.txt](labels/source_copies_for_label_files/tcia_cptac_md5sum_hashes.txt) - see https://github.com/GeorgeBatch/TCIA-CPTAC-download-instructions
 * [tcia_cptac_luad_lusc_cohort.csv](labels/source_copies_for_label_files/tcia_cptac_luad_lusc_cohort.csv) - see https://github.com/GeorgeBatch/TCIA-CPTAC-download-instructions
-* [tcia_cptac_string_2_ouh_labels.csv](labels/source_copies_for_label_files/tcia_cptac_string_2_ouh_labels.csv) - took unique values from [tcia_cptac_luad_lusc_cohort.csv](labels/source_copies_for_label_files/tcia_cptac_luad_lusc_cohort.csv) and manually mapped to labels
+* [tcia_cptac_string_2_ouh_labels.csv](labels/source_copies_for_label_files/tcia_cptac_string_2_ouh_labels.csv) - took unique values from [tcia_cptac_luad_lusc_cohort.csv](labels/source_copies_for_label_files/tcia_cptac_luad_lusc_cohort.csv) and manually mapped to labels inspired by OUH (Oxford University Hospitals) reports
 
 
 ### Dummy label files
