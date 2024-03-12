@@ -47,3 +47,13 @@ The code will create the files in [labels/experiment-label-files/](labels/experi
 
 **Note, the combined dataset for training/validation is not the same as in the paper since the in-house DART dataset is not publicly available.**
 The test set, however, is the same as in the paper and is fully available in the [8-label task](labels/experiment-label-files/DETAILED_COMBINED_HARD_TEST_LUAD_LUSC_BENIGN.csv) and [5-label task](labels/experiment-label-files/DETAILED_COMBINED_HARD_TEST_LUAD_LUSC_BENIGN_AT_LEAST_ONE_KNOWN_PATTERN.csv).
+
+## Acknowledgements
+
+George Batchkala is supported by Fergus Gleeson and the EPSRC Center for Doctoral Training in Health Data Science (EP/S02428X/1).
+The work was done as part of DART Lung Health Program (UKRI grant 40255).
+
+The computational aspects of this research were supported by the Wellcome
+Trust Core Award Grant Number 203141/Z/16/Z and the NIHR Oxford BRC. The views
+expressed are those of the author(s) and not necessarily those of the NHS, the
+NIHR or the Department of Health.
