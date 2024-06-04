@@ -1,10 +1,12 @@
 # Dependency-MIL
 
-## Accurate Subtyping of Lung Cancers by Modelling Class Dependencies - Accepted to ISBI 2024
+## Accurate Subtyping of Lung Cancers by Modelling Class Dependencies
 
 [[`Pre-print`](https://ora.ox.ac.uk/objects/uuid:4966840e-ccef-4fbf-b5fb-6cf0376d9aaa)] [[`Code`](https://github.com/GeorgeBatch/dependency-mil)] [[`BibTeX`](#Citation)]
 
-George Batchkala, Bin Li, Mengran Fan, Mark McCole, Cecilia Brambilla, Fergus Gleeson, Jens Rittscher.
+**Has been presented in 2024 at the 21th International Symposium on Biomedical Imaging (ISBI).**
+
+Authors: George Batchkala, Bin Li, Mengran Fan, Mark McCole, Cecilia Brambilla, Fergus Gleeson, Jens Rittscher.
 
 ## Creation of the Multi-label Dataset
 
