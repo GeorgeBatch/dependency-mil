@@ -4,7 +4,7 @@
 
 [[`Pre-print`](https://ora.ox.ac.uk/objects/uuid:4966840e-ccef-4fbf-b5fb-6cf0376d9aaa)] [[`Code`](https://github.com/GeorgeBatch/dependency-mil)] [[`BibTeX`](#Citation)]
 
-**Has been presented in 2024 at the 21th International Symposium on Biomedical Imaging (ISBI).**
+**Has been presented in 2024 at the 21th International Symposium on Biomedical Imaging (ISBI-2024).**
 
 Authors: George Batchkala, Bin Li, Mengran Fan, Mark McCole, Cecilia Brambilla, Fergus Gleeson, Jens Rittscher.
 
