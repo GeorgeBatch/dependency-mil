@@ -4,9 +4,11 @@
 
 [[`Pre-print`](https://ora.ox.ac.uk/objects/uuid:4966840e-ccef-4fbf-b5fb-6cf0376d9aaa)] [[`Code`](https://github.com/GeorgeBatch/dependency-mil)] [[`BibTeX`](#Citation)]
 
-### Creation of the Multi-label Dataset
+George Batchkala, Bin Li, Mengran Fan, Mark McCole, Cecilia Brambilla, Fergus Gleeson, Jens Rittscher.
 
-#### Source files used to make the labels
+## Creation of the Multi-label Dataset
+
+### Source files used to make the labels
 
 * [DHMC_MetaData_Release_1.0.csv](labels/source_copies_for_label_files/DHMC_MetaData_Release_1.0.csv) - downloaded from https://bmirds.github.io/LungCancer/; gives predominant LUAD pattern
 
@@ -18,7 +20,7 @@
 * [tcia_cptac_string_2_ouh_labels.csv](labels/source_copies_for_label_files/tcia_cptac_string_2_ouh_labels.csv) - took unique values from [tcia_cptac_luad_lusc_cohort.csv](labels/source_copies_for_label_files/tcia_cptac_luad_lusc_cohort.csv) and manually mapped to labels inspired by OUH (Oxford University Hospitals) reports
 
 
-#### Dummy label files
+### Dummy label files
 
 Columns include the `label` (LUAD vs LUSC) and paths to features:
 * `features_csv_file_path`
@@ -40,7 +42,7 @@ TCGA has both LUAD and LUSC so entries in the `label` field include 0 and 1:
 * [TCGA-lung-default.csv](labels/dummy-label-files/TCGA-lung-default.csv)
 * [TCGA-lung-ms.csv](labels/dummy-label-files/TCGA-lung-ms.csv)
 
-#### Run the creation code
+### Run the creation code
 
 Run the labels creation code [notebook](labels_creation_code/make_detailed_labels_for_dhmc_tcga_tcia.ipynb).
 The code will create the files in [labels/experiment-label-files/](labels/experiment-label-files/).
@@ -48,13 +50,8 @@ The code will create the files in [labels/experiment-label-files/](labels/experi
 **Note, the combined dataset for training/validation is not the same as in the paper since the in-house DART dataset is not publicly available.**
 The test set, however, is the same as in the paper and is fully available in the [8-label task](labels/experiment-label-files/DETAILED_COMBINED_HARD_TEST_LUAD_LUSC_BENIGN.csv) and [5-label task](labels/experiment-label-files/DETAILED_COMBINED_HARD_TEST_LUAD_LUSC_BENIGN_AT_LEAST_ONE_KNOWN_PATTERN.csv).
 
-#### PyTorch Dataset and Data Loaders
 
-Code for creating
-* PyTorch dataset: [dataset_detailed.py](./source/datasets/dataset_detailed.py).
-* PyTorch data loaders using PyTorch Ligtning Datamodule : [datamodule_detailed.py](./source/datasets/datamodule_detailed.py).
-
-### Tiling, Feature Extraction, and Training - Improvements In Progress (last updated: June 4th, 2024)
+## Tiling, Feature Extraction, and Training - Improvements In Progress (last updated: June 4th, 2024)
 
 For publication, I used the tiling and feature extraction pipeline from https://github.com/binli123/dsmil-wsi repository.
 For faster computation, the csv features should be converted into `hdf5` and `pt` files like in https://github.com/mahmoodlab/CLAM.
@@ -64,7 +61,13 @@ For training I used the code from https://github.com/binli123/dsmil-wsi modified
 
 I will release the code once I finish improving it. If you need the code urgently, please contact me.
 
-### Dependency Modelling architecture
+## PyTorch Dataset and Data Loaders
+
+Code for creating
+* PyTorch dataset: [dataset_detailed.py](./source/datasets/dataset_detailed.py).
+* PyTorch data loaders using PyTorch Ligtning Datamodule : [datamodule_detailed.py](./source/datasets/datamodule_detailed.py).
+
+## Dependency Modelling architecture
 
 Dependency-MIL model can be created using `get_model()` function from [source.models.combined_model](./source/models/combined_model.py)
 
