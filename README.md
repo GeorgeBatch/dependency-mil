@@ -60,13 +60,13 @@ For publication, I used the tiling and feature extraction pipeline from https://
 For faster computation, the csv features should be converted into `hdf5` and `pt` files like in https://github.com/mahmoodlab/CLAM.
 I am currently working on standardising the tiling and feature extraction pipeline for the Dependency-MIL model using [tiatoolbox](https://github.com/TissueImageAnalytics/tiatoolbox).
 
-For training I used the code from https://github.com/binli123/dsmil-wsi modified to accomodate for partial labels using [`custom_binary_cross_entropy_with_logits()`](./source/losses.py).
+For training I used the code from https://github.com/binli123/dsmil-wsi modified to accomodate for partial labels using `custom_binary_cross_entropy_with_logits` function from [source.losses](./source/losses.py)
 
 I will release the code once I finish improving it. If you need the code urgently, please contact me.
 
 ### Dependency Modelling architecture
 
-You can find the code for model creation in [sour](./source/models/combined_model.py).
+Dependency-MIL model can be created using `get_model()` function from [source.models.combined_model](./source/models/combined_model.py)
 
 ## Acknowledgements
 
