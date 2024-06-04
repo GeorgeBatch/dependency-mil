@@ -48,7 +48,7 @@ The code will create the files in [labels/experiment-label-files/](labels/experi
 **Note, the combined dataset for training/validation is not the same as in the paper since the in-house DART dataset is not publicly available.**
 The test set, however, is the same as in the paper and is fully available in the [8-label task](labels/experiment-label-files/DETAILED_COMBINED_HARD_TEST_LUAD_LUSC_BENIGN.csv) and [5-label task](labels/experiment-label-files/DETAILED_COMBINED_HARD_TEST_LUAD_LUSC_BENIGN_AT_LEAST_ONE_KNOWN_PATTERN.csv).
 
-#### Dataset and Data Loaders
+#### PyTorch Dataset and Data Loaders
 
 Code for creating
 * PyTorch dataset: [dataset_detailed.py](./source/datasets/dataset_detailed.py).
