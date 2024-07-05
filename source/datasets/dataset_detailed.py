@@ -23,23 +23,60 @@ class DFRow(BaseModel):
     LUAD_micropapillary: int
     LUAD_papillary: int
     LUAD_solid: int
+    """
+    Represents a row in a DataFrame with detailed information about a dataset.
 
-    # extract loss weights and checks for each class
-    #     unknown: -1
-    #     absent: 0
-    #     present: 1
-    #     predominant pattern: 2
+    Attributes:
+        features_csv_file_path (str): The file path to the CSV file containing the features and possibly patch locations as the last 2 columns.
+        h5_file_path (str): The file path to the HDF5 file containing the features and tile coordinates in HDF5 format.
+        pt_file_path (str): The file path to the PyTorch file containing the features in PyTorch format.
+        patient_id (str): The ID of the patient.
+        source (str): The source of the dataset.
+        LUAD (int): The label for LUAD.
+        LUSC (int): The label for LUSC.
+        Benign (int): The label for Benign.
+        LUAD_acinar (int): The label for LUAD acinar.
+        LUAD_lepidic (int): The label for LUAD lepidic.
+        LUAD_micropapillary (int): The label for LUAD micropapillary.
+        LUAD_papillary (int): The label for LUAD papillary.
+        LUAD_solid (int): The label for LUAD solid.
+
+    Label conventions:
+    - unknown: -1
+    - absent: 0
+    - present: 1
+    - predominant pattern: 2
+    """
 
     @property
     def labels_luad_lusc(self) -> np.ndarray:
+        """
+        Get the labels for LUAD and LUSC as a NumPy array.
+
+        Returns:
+            np.ndarray: The labels for LUAD and LUSC.
+        """
         return np.array([self.LUAD, self.LUSC])
 
     @property
     def labels_luad_lusc_benign(self) -> np.ndarray:
+        """
+        Get the labels for LUAD, LUSC, and Benign as a NumPy array.
+
+        Returns:
+            np.ndarray: The labels for LUAD, LUSC, and Benign.
+        """
         return np.array([self.LUAD, self.LUSC, self.Benign])
 
     @property
     def labels_luad_lusc_benign_luad_patterns(self) -> np.ndarray:
+        """
+        Get the labels for LUAD, LUSC, Benign, and LUAD patterns as a NumPy array.
+
+        Returns:
+            np.ndarray: The labels for LUAD, LUSC, Benign, and LUAD patterns.
+            Order: LUAD, LUSC, Benign, acinar, lepidic, micropapillary, papillary, solid.
+        """
         return np.array([
             self.LUAD, self.LUSC, self.Benign,
             self.LUAD_acinar, self.LUAD_lepidic, self.LUAD_micropapillary, self.LUAD_papillary, self.LUAD_solid
@@ -47,12 +84,38 @@ class DFRow(BaseModel):
 
     @property
     def luad_patterns(self) -> np.ndarray:
+        """
+        Get the LUAD patterns as a NumPy array.
+
+        Returns:
+            np.ndarray: The LUAD patterns: acinar, lepidic, micropapillary, papillary, and solid.
+        """
         return np.array([
             self.LUAD_acinar, self.LUAD_lepidic, self.LUAD_micropapillary, self.LUAD_papillary, self.LUAD_solid
         ])
 
 
 class LungSubtypingDataset(Dataset):
+    """
+    Dataset class for lung subtyping.
+
+    Args:
+        df (pd.DataFrame): The input DataFrame containing the dataset information.
+        feats_size (int): The size of the features.
+        patch_loc_size (int): The size of the patch locations.
+        num_classes (int): The number of classes.
+        label_group (str): The label group.
+        device (torch.device): The device to use.
+
+    Attributes:
+        _df (pd.DataFrame): The input DataFrame containing the dataset information.
+        feats_size (int): The size of the features.
+        patch_loc_size (int): The size of the patch locations.
+        num_classes (int): The number of classes.
+        label_group (str): The label group.
+        device (torch.device): The device to use.
+    """
+
     def __init__(
             self,
             df: pd.DataFrame,
@@ -70,6 +133,15 @@ class LungSubtypingDataset(Dataset):
         self.device = device
 
     def __getitem__(self, idx: int) -> tp.Tuple[np.ndarray, np.ndarray]:
+        """
+        Get the item at the given index.
+
+        Args:
+            idx (int): The index of the item to retrieve.
+
+        Returns:
+            tuple: A tuple containing the features, labels, label weight mask, and patch locations.
+        """
         row = DFRow(**self._df.iloc[idx])
 
         # no shuffling of the features order
@@ -104,14 +176,36 @@ class LungSubtypingDataset(Dataset):
             label_weight_mask, dtype=torch.float32), torch.tensor(patch_locs, dtype=torch.int)
 
     def __len__(self) -> int:
+        """
+        Get the length of the dataset.
+
+        Returns:
+            int: The length of the dataset.
+        """
         return len(self._df)
 
     def compute_weights_mask(self, labels: np.ndarray) -> np.ndarray:
+        """
+        Compute the label weights mask.
 
-        # 1, 0, 0, -1
-        #   labels: 1, 0, 0, 0
-        #   weight: 1, 1, 1, 0
+        Args:
+            labels (np.ndarray): The input labels.
 
+        Returns:
+            np.ndarray: The binary labels and label weights mask.
+
+        Examples:
+            >>> dataset = LungSubtypingDataset(...)
+            >>> labels = np.array([1, 0, 1]) # all labels known
+            >>> dataset.compute_weights_mask(labels)
+            (array([1, 0, 0, 1]), array([1., 1., 1., 1.]))
+
+            >>> dataset = LungSubtypingDataset(...)
+            >>> labels = np.array([1, 0, 0, -1]) # last label unknown
+            >>> dataset.compute_weights_mask(labels)
+            (array([1, 0, 0, 0]), array([1., 1., 1., 0.]))
+
+        """
         binary_labels = (labels > 0).astype(int)
         label_weights = np.ones_like(labels)
         label_weights[labels == -1] = 0
@@ -119,6 +213,15 @@ class LungSubtypingDataset(Dataset):
 
 
 def pad_1D_collate(batch):
+    """
+    Collates a batch of data by padding bags and patch locations to the maximum length.
+
+    Args:
+        batch (list): A list of tuples containing bags, labels, label weight masks, and patch locations.
+
+    Returns:
+        tuple: A tuple containing the padded bags, labels, label weight masks, bag lengths, and padded patch locations.
+    """
     bags, labels, label_weight_mask, patch_locs = zip(*batch)
     bag_lens = [len(x) for x in bags]
     max_len = max(bag_lens)
