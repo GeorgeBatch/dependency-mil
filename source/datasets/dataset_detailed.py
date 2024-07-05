@@ -6,7 +6,6 @@ import numpy as np
 import pandas as pd
 import torch
 from pydantic import BaseModel
-from sklearn.utils import shuffle
 from torch.utils.data import Dataset
 
 
@@ -73,9 +72,9 @@ class LungSubtypingDataset(Dataset):
     def __getitem__(self, idx: int) -> tp.Tuple[np.ndarray, np.ndarray]:
         row = DFRow(**self._df.iloc[idx])
 
-        # features_df = pd.read_csv(row.features_csv_file_path)
-        # feats = shuffle(features_df).reset_index(drop=True)
-
+        # no shuffling of the features order
+        #   MIL models are invariant to the order of the features
+        #   ViT models have positional encodings that take care of that
         feats = torch.load(row.pt_file_path, map_location=self.device)
         feats = feats[:, :self.feats_size]
         assert feats.dtype == torch.float32, f"Expected torch.float32, got {feats.dtype}"
