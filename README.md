@@ -2,7 +2,7 @@
 
 ## Accurate Subtyping of Lung Cancers by Modelling Class Dependencies
 
-[[`Pre-print`](https://ora.ox.ac.uk/objects/uuid:4966840e-ccef-4fbf-b5fb-6cf0376d9aaa)] [[`Code`](https://github.com/GeorgeBatch/dependency-mil)] [[`BibTeX`](#Citation)]
+[[`Paper`](https://ieeexplore.ieee.org/document/10635232)] [[`Pre-print`](https://ora.ox.ac.uk/objects/uuid:4966840e-ccef-4fbf-b5fb-6cf0376d9aaa)] [[`Code`](https://github.com/GeorgeBatch/dependency-mil)] [[`BibTeX`](#Citation)]
 
 **Has been presented in 2024 at the 21th International Symposium on Biomedical Imaging (ISBI-2024).**
 
@@ -85,18 +85,18 @@ NIHR or the Department of Health.
 
 ## Citation
 
-If you find Dependency-MIL useful for your your research and applications, please cite using this BibTeX (will be updated once the paper is published by IEEE in ISBI 2024 proceedings):
+If you find Dependency-MIL useful for your your research and applications, please cite using this BibTeX:
 
 ```
 @INPROCEEDINGS{batchkala2024dependency-mil,
   author={Batchkala, George and Li, Bin and Fan, Mengran and McCole, Mark and Brambilla, Cecilia and Gleeson, Fergus and Rittscher, Jens},
-  booktitle={2024 IEEE 21th International Symposium on Biomedical Imaging (ISBI)}, 
+  booktitle={2024 IEEE International Symposium on Biomedical Imaging (ISBI)}, 
   title={Accurate Subtyping of Lung Cancers by Modelling Class Dependencies}, 
   year={2024},
   volume={},
   number={},
-  pages={...},
-  keywords={lung cancer;computational pathology;multi-label classification;multiple-instance learning},
-  doi={...}
+  pages={1-5},
+  keywords={Accuracy;Convolution;Annotations;Histopathology;Lung cancer;Lung;Predictive models;lung cancer;computational pathology;multi-label classification;multiple-instance learning},
+  doi={10.1109/ISBI56570.2024.10635232}
 }
 ```
