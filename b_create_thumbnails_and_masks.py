@@ -11,7 +11,7 @@ import argparse
 import os
 import sys
 import glob
-import importlib
+import json
 from pprint import pprint
 
 from pathlib import Path
@@ -19,40 +19,14 @@ from pathlib import Path
 # standard imports
 import numpy as np
 
-# get tiatoolbox
-try:
-    tiatoolbox = importlib.import_module("tiatoolbox")
-    if tiatoolbox.__version__ < "1.6":
-        raise ImportError(
-            f"tiatoolbox version {tiatoolbox.__version__} is installed, but version >= 1.6 is required."
-        )
-except ImportError as e:
-    print(e)
-    sys.path.append("../")
-    # use local path tiatoolbox imports
-    if os.getcwd().startswith("/gpfs3/well/rittscher-dart/"):
-        sys.path.append(
-            "/well/rittscher-dart/users/qun786/projects/current/comp-path/tiatoolbox/"
-        )
-    elif os.getcwd().startswith("/Users/gbatch"):
-        sys.path.append("/Users/gbatch/Developer/projects/current/comp-path/tiatoolbox")
-    elif os.getcwd().startswith("/home/georgebatchkala"):
-        sys.path.append(
-            "/home/georgebatchkala/Developer/projects/current/comp-path/tiatoolbox"
-        )
-    else:
-        raise NotImplementedError("Local path for tiatoolbox import not defined.")
-    # Try importing again from the local path
-    try:
-        tiatoolbox = importlib.import_module("tiatoolbox")
-    except ImportError:
-        raise ImportError(
-            "tiatoolbox is not installed and could not be found in the local path."
-        )
+# get tiatoolbox>=1.6
+import tiatoolbox
+assert tiatoolbox.__version__ >= "1.6", (
+    f"tiatoolbox version {tiatoolbox.__version__} is installed, but version >= 1.6 is required."
+)
 # tiatoolbox imports
 from tiatoolbox.wsicore.wsireader import WSIReader
 from tiatoolbox.utils.misc import imwrite
-import json
 
 # python b_create_thumbnails_and_masks.py --dataset ouh_batch1_20x --slide_format ndpi
 # python b_create_thumbnails_and_masks.py --dataset ouh_batch1_40x --slide_format tif
