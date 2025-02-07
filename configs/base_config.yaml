@@ -1,0 +1,88 @@
+project_name: 'dependency-injection-for-detailed-lung-cancer-subtyping'
+experiment_name: 'base_config'
+
+# hardware_config:
+accelerator: 'cuda'
+gpu_device: 0
+
+# reproducibility_config:
+random_seed: 42
+
+# trainvaltest_config:
+train_test_mode: 'train_test'
+split: 0.2
+trainval_dataset_csv_path: ''
+test_dataset_csv_path: ''
+
+# data_and_architecture_shared_config:
+label_group: 'luad_lusc'
+num_classes: 2
+
+# data_config:
+task_type: 'multi_label_classification'
+patch_loc_size: 0
+label_col_name: 'label'
+feats_dir: ''
+min_mask_ratio: 0.0
+patient_id_col_name: 'patient_id'
+subsample_num_patches: -1 # -1 means no subsampling
+dropout_patch: 0
+
+# architecture_config:
+feats_size: 512
+# for slide-level embeddings
+linear_probing: false # set true if using slide-level embeddings
+# for patch-level embeddings
+instance_embedder_output_size: 512
+instance_embedder_name: 'identity'
+instance_classifier_name: null
+instance_loss_coef: 0.0
+architecture_name: 'abmil'
+architecture_kwargs: {}
+# architecture_name: 'abmil'
+# aggregator_kwargs: # for 'abmil' architecture
+#   gated: false
+#   proj_size: 128
+# architecture_name: 'dsmil'
+# aggregator_kwargs: # for 'dsmil' architecture
+  # q_size: 128
+  # q_nonlinear: true  # original config had `non_linearity: 1.0`
+  # v_size: 512 # needs to be the same as instance_embedder_output_size if v_identity is True
+  # v_identity: true
+class_connector_name: 'identity'
+classifier_name: 'communicating_conv'
+saved_weights_pth: 'weights/init-${architecture_name}.pth'
+dropout_node: 0
+non_linearity: 1
+
+# applies only to 'dsmil' architecture_name
+average_instance_and_bag_pred: true
+
+# hyperparameters_config:
+num_epochs: 10
+batch_size: 1
+eval_batch_size_size_proportion: 1.0
+limit_num_batches: 1
+
+# optimizer configuration
+optimizer: null
+optimizer_kwargs: {}
+# optimizer: 'torch.optim.Adam'
+# optimizer_kwargs:
+#   lr: 0.0002
+#   betas: [0.5, 0.9] # original DS-MIL parameters
+#   weight_decay: 0.005
+
+# scheduler configuration
+scheduler: null
+scheduler_kwargs: {}
+# scheduler: 'torch.optim.lr_scheduler.CosineAnnealingLR'
+# scheduler_kwargs:
+#   T_max: ${num_epochs}
+#   eta_min: 0.000005
+
+# early_stopping_patience: 3
+# monitor_metric: 'roc_auc'
+# monitor_mode: 'max'
+
+
