@@ -70,3 +70,57 @@ def split_dataset_by_patient(dataframe, groups_col_name, feature_col_names, test
     test_set.drop(columns=['stratify_column'], inplace=True)
 
     return train_set.reset_index(drop=True), test_set.reset_index(drop=True)
+
+
+if __name__ == "__main__":
+    # Load the data
+    df = pd.read_csv('../experiment-label-files/OUH_LUAD_vs_rest.csv')
+    # X = df['path']
+    # y = df['label']
+    groups_series = df['patient_id']
+
+    # Test the group_split function
+    df_train, df_test = group_split(df=df, groups=groups_series, test_size=0.3, random_state=42)
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=0.2, random_state=42)
+
+    # Print the train and test sets
+    print("Training Set:")
+    print(df_train.head())
+    print("")
+
+    print("Test Set:")
+    print(df_test.head())
+    print("")
+
+    # ipdb.set_trace()
+
+    # Check that each group is fully placed in either train or test set
+    train_groups = set(groups_series[df_train.index])
+    test_groups = set(groups_series[df_test.index])
+
+    # assert len(train_groups.intersection(test_groups)) == 0, \
+    #     (f"Each group should be fully placed in either train or test set."
+    #      f"\n Intersection: {train_groups.intersection(test_groups)}")
+
+    y = df['label']
+    y_train = df_train['label']
+    y_test = df_test['label']
+    # Calculate class percentages in train and test sets
+    all_class_percentages = y.value_counts(normalize=True) * 100
+    train_class_percentages = y_train.value_counts(normalize=True) * 100
+    test_class_percentages = y_test.value_counts(normalize=True) * 100
+
+    print("Class Percentages in All Data:")
+    print(all_class_percentages)
+    print("Total number of samples:", len(y))
+    print("")
+
+    print("Class Percentages in Training Set:")
+    print(train_class_percentages)
+    print("Total number of samples:", len(y_train))
+    print("")
+
+    print("Class Percentages in Test Set:")
+    print(test_class_percentages)
+    print("Total number of samples:", len(y_test))
+    print()
