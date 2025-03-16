@@ -99,7 +99,16 @@ The data loading pipeline is implemented using custom PyTorch Datasets and PyTor
 
 ### Feature Extraction
 
+In addition to the patch feature extractors readily available through TIAToolbox (UNI, Prov-GigaPath, H-Optimus-0), this repository provides a range of feature extraction models that can be used as plug-in models for TIAToolbox by using the `get_feature_extractor_model` function from [source.feature_extraction.get_model](./source/feature_extraction/get_model.py). Used in [c_compute_tiatoolbox_feats.py](c_compute_tiatoolbox_feats.py).
 
+Added feature extractors include:
+- ResNet-based extractors:
+  - The CLAM-inspired extractor (`resnet50_baseline`) adapts Truncated ResNet50 pre-trained on ImageNet.
+  - The DSMIL variant (via `get_resnet18_dsmil`) leverages SimCLR pre-training to extract rich features from whole slide images.
+- Transformer-based extractors:
+  - `PhikonFeatureExtractor` with versions `v1` and `v2` (trained on more data)
+  - `HibouFeatureExtractor` with versions `b` and `L`
+  - `VirchowFeatureExtractor` with versions `v1` (w/o register tokens) and `v2` (w/ DINOv2 register tokens).
 
 ### Feature Aggregation: Class-Dependency Modelling
 
