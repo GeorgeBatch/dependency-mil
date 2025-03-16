@@ -53,15 +53,38 @@ The code will create the files in [labels/experiment-label-files/](labels/experi
 The test set, however, is the same as in the paper and is fully available in the [8-label task](labels/experiment-label-files/DETAILED_COMBINED_HARD_TEST_LUAD_LUSC_BENIGN.csv) and [5-label task](labels/experiment-label-files/DETAILED_COMBINED_HARD_TEST_LUAD_LUSC_BENIGN_AT_LEAST_ONE_KNOWN_PATTERN.csv).
 
 
-## Tiling, Feature Extraction, and Training - Improvements In Progress (last updated: June 4th, 2024)
+## Running Scripts
 
-For publication, I used the tiling and feature extraction pipeline from https://github.com/binli123/dsmil-wsi repository.
-For faster computation, the csv features should be converted into `hdf5` and `pt` files like in https://github.com/mahmoodlab/CLAM.
-I am currently working on standardising the tiling and feature extraction pipeline for the Dependency-MIL model using [tiatoolbox](https://github.com/TissueImageAnalytics/tiatoolbox).
+- [a_save_slide_metadata.py](./a_save_slide_metadata.py): Saves metadata for all WSIs in a dataset.  
+  Example: `python a_save_slide_metadata.py --dataset TCGA-lung --slide_format svs`
 
-For training I used the code from https://github.com/binli123/dsmil-wsi modified to accomodate for partial labels using `custom_binary_cross_entropy_with_logits` function from [source.losses](./source/losses.py)
+- [b_create_thumbnails_and_masks.py](./b_create_thumbnails_and_masks.py): Produces thumbnails and masks for WSIs.  
+  Example: `python b_create_thumbnails_and_masks.py --dataset TCGA-lung --slide_format svs`
 
-I will release the code once I finish improving it. If you need the code urgently, please contact me.
+- [c_compute_tiatoolbox_feats.py](./c_compute_tiatoolbox_feats.py): Extracts patch features for WSIs using tiatoolbox.  
+  Example: `python c_compute_tiatoolbox_feats.py --dataset TCGA-lung --slide_format svs`
+
+- [c_record_masked_positions.py](./c_record_masked_positions.py): Records masked positions for WSIs by comparing feature positions with mask intersections.  
+  Example: `python c_record_masked_positions.py --dataset TCGA-lung --slide_format svs --min_mask_ratio 0.1`
+
+- [c_record_positions_intersections.py](./c_record_positions_intersections.py): Records intersections between slide feature positions and mask intersection positions.  
+  Example: `python c_record_positions_intersections.py --num_workers 24`
+
+- [d_train_classifier.py](./d_train_classifier.py): Trains a MIL classifier on patch features.  
+  Example: `python d_train_classifier.py --base_config_path ./configs/base_config.yaml --config_path ./configs/current_config.yaml`
+
+- [e_compute_gigapath_slide_level_feats.py](./e_compute_gigapath_slide_level_feats.py): Computes slide-level embeddings using the prov-gigapath model.  
+  Example: `python e_compute_gigapath_slide_level_feats.py --embedding_data_dir datasets/TCGA-lung/features/prov-gigapath/imagenet/patch_224_0.5_mpp`
+
+- [e_compute_prism_slide_caption_similarities.py](./e_compute_prism_slide_caption_similarities.py): Computes slide-level caption similarities using the PRISM model.  
+  Example: `python e_compute_prism_slide_caption_similarities.py --embedding_data_dir datasets/TCGA-lung/features/VirchowFeatureExtractor_v1_concat/imagenet/patch_224_0.5_mpp`
+
+- [e_compute_prism_slide_level_feats.py](./e_compute_prism_slide_level_feats.py): Computes slide-level embeddings using the PRISM model.  
+  Example: `python e_compute_prism_slide_level_feats.py --embedding_data_dir datasets/TCGA-lung/features/VirchowFeatureExtractor_v1_concat/imagenet/patch_224_0.5_mpp`
+
+- [f_train_linear_probing_classifier.py](./f_train_linear_probing_classifier.py): Trains a linear probing classifier on slide features.  
+  Example: `python f_train_linear_probing_classifier.py --base_config_path ./configs/base_config.yaml --config_path ./configs/current_config.yaml`
+
 
 ## Source Contents
 
@@ -69,8 +92,8 @@ I will release the code once I finish improving it. If you need the code urgentl
 
 The data loading pipeline is implemented using custom PyTorch Datasets and PyTorch Lightning DataModules. Specifically:
 
-- Datasets: [./source/data/dataset_detailed.py](./source/data/dataset_detailed.py) (`LungSubtypingDataset` and `LungSubtypingSlideEmbeddingDataset`) load precomputed features, positional data, and label masks from .pt and .npy files. They also perform on-the-fly subsampling and compute weight masks for instances with unknown labels.
-- DataModules: [./source/data/datamodule_detailed.py](./source/data/datamodule_detailed.py) (`LungSubtypingDM` and `LungSubtypingSlideEmbeddingDM`) handle the creation and splitting of datasets based on patient IDs, reading CSV descriptions that reference pre-extracted patch features.
+- Datasets: [source.data.dataset_detailed](./source/data/dataset_detailed.py) (`LungSubtypingDataset` and `LungSubtypingSlideEmbeddingDataset`) load precomputed features, positional data, and label masks from .pt and .npy files. They also perform on-the-fly subsampling and compute weight masks for instances with unknown labels.
+- DataModules: [source.data.datamodule_detailed](./source/data/datamodule_detailed.py) (`LungSubtypingDM` and `LungSubtypingSlideEmbeddingDM`) handle the creation and splitting of datasets based on patient IDs, reading CSV descriptions that reference pre-extracted patch features.
 
 ### Dependency Modelling architecture
 
