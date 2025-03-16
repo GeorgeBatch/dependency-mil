@@ -71,7 +71,9 @@ The test set, however, is the same as in the paper and is fully available in the
   Example: `python c_record_positions_intersections.py --num_workers 24`
 
 - [d_train_classifier.py](./d_train_classifier.py): Trains a MIL classifier on patch features.  
-  Example: `python d_train_classifier.py --base_config_path ./configs/base_config.yaml --config_path ./configs/current_config.yaml`
+  * Example 1 (like in the paper): `python d_train_classifier.py --base_config_path ./configs/base_config.yaml --config_path ./configs/combined-configs-sota/simclr-tcga-lung_resnet18-10x_COMBINED-ALL-8-dsmil-wo_subsampling.yaml`
+  * Example 2 (subsampling patches): `python d_train_classifier.py --base_config_path ./configs/base_config.yaml --config_path ./configs/combined-configs-sota/simclr-tcga-lung_resnet18-10x_COMBINED-ALL-8-dsmil_config.yaml`
+  * Example 3 (with mixed supervision - used in-house data): `python d_train_classifier.py --base_config_path ./configs/base_config.yaml --config_path ./configs/combined-configs-mixed-supervision/simclr-tcga-lung_resnet18-10x_COMBINED-ALL-8-dsmil_config.yaml`
 
 - [e_compute_gigapath_slide_level_feats.py](./e_compute_gigapath_slide_level_feats.py): Computes slide-level embeddings using the prov-gigapath model.  
   Example: `python e_compute_gigapath_slide_level_feats.py --embedding_data_dir datasets/TCGA-lung/features/prov-gigapath/imagenet/patch_224_0.5_mpp`
@@ -83,7 +85,7 @@ The test set, however, is the same as in the paper and is fully available in the
   Example: `python e_compute_prism_slide_level_feats.py --embedding_data_dir datasets/TCGA-lung/features/VirchowFeatureExtractor_v1_concat/imagenet/patch_224_0.5_mpp`
 
 - [f_train_linear_probing_classifier.py](./f_train_linear_probing_classifier.py): Trains a linear probing classifier on slide features.  
-  Example: `python f_train_linear_probing_classifier.py --base_config_path ./configs/base_config.yaml --config_path ./configs/current_config.yaml`
+  Example: `python f_train_linear_probing_classifier.py --base_config_path ./configs/base_config.yaml --config_path ./configs/combined-configs-slide-linear-probing/PRISM_COMBINED-ALL-8-linear_config.yaml`
 
 
 ## Source Contents
