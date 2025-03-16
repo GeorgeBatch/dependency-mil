@@ -63,13 +63,16 @@ For training I used the code from https://github.com/binli123/dsmil-wsi modified
 
 I will release the code once I finish improving it. If you need the code urgently, please contact me.
 
-## PyTorch Dataset and Data Loaders
+## Source Contents
 
-Code for creating
-* PyTorch dataset: [dataset_detailed.py](./source/datasets/dataset_detailed.py).
-* PyTorch data loaders using PyTorch Ligtning Datamodule : [datamodule_detailed.py](./source/datasets/datamodule_detailed.py).
+### PyTorch Datasets and Data Loaders
 
-## Dependency Modelling architecture
+The data loading pipeline is implemented using custom PyTorch Datasets and PyTorch Lightning DataModules. Specifically:
+
+- Datasets: [./source/data/dataset_detailed.py](./source/data/dataset_detailed.py) (`LungSubtypingDataset` and `LungSubtypingSlideEmbeddingDataset`) load precomputed features, positional data, and label masks from .pt and .npy files. They also perform on-the-fly subsampling and compute weight masks for instances with unknown labels.
+- DataModules: [./source/data/datamodule_detailed.py](./source/data/datamodule_detailed.py) (`LungSubtypingDM` and `LungSubtypingSlideEmbeddingDM`) handle the creation and splitting of datasets based on patient IDs, reading CSV descriptions that reference pre-extracted patch features.
+
+### Dependency Modelling architecture
 
 Dependency-MIL model can be created using `get_model()` function from [source.feature_aggregation.models.combined_model](./source/feature_aggregation/combined_model.py)
 
