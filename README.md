@@ -97,7 +97,11 @@ The data loading pipeline is implemented using custom PyTorch Datasets and PyTor
 - Datasets: [source.data.dataset_detailed](./source/data/dataset_detailed.py) (`LungSubtypingDataset` and `LungSubtypingSlideEmbeddingDataset`) load precomputed features, positional data, and label masks from .pt and .npy files. They also perform on-the-fly subsampling and compute weight masks for instances with unknown labels.
 - DataModules: [source.data.datamodule_detailed](./source/data/datamodule_detailed.py) (`LungSubtypingDM` and `LungSubtypingSlideEmbeddingDM`) handle the creation and splitting of datasets based on patient IDs, reading CSV descriptions that reference pre-extracted patch features.
 
-### Dependency Modelling architecture
+### Feature Extraction
+
+
+
+### Feature Aggregation: Class-Dependency Modelling
 
 Dependency-MIL model can be created using `get_model()` function from [source.feature_aggregation.models.combined_model](./source/feature_aggregation/combined_model.py)
 
@@ -107,6 +111,14 @@ It uses the following components:
 - Bag Aggregators: `AbmilBagClassifier`, `DsmilBagClassifier` from [source.feature_aggregation.combined_model](./source/feature_aggregation/combined_model.py)
 - Class Connectors: `BahdanauSelfAttention`, `TransformerSelfAttention` from [source.feature_aggregation.class_connectors](./source/feature_aggregation/class_connectors.py)
 - Classifier Heads: `LinearClassifier`, `DSConvClassifier`, `CommunicatingConvClassifier` from [source.feature_aggregation.classifier_heads](./source/feature_aggregation/classifier_heads.py)
+
+### Loss Function
+
+The custom loss function in [source.losses](./source/losses.py) computes a weighted loss across a list of input logits. Depending on the setting, it uses either binary cross entropy with logits (multiplying the loss elementwise with a provided weight tensor) or standard cross entropy (which requires all weights to be positive). For each valid input (i.e. non-None), the loss is summed and then normalized by the product of the number of valid inputs and the total sum of weights.
+
+The same loss function is used for both the instance-level (when patch labels are available) and bag-level (on slide labels) losses in the Dependency-MIL model.
+
+The classifier heads that use this loss (e.g. `LinearClassifier`, `DSConvClassifier`, and `CommunicatingConvClassifier`) are defined in [source.feature_aggregation.classifier_heads](./source/feature_aggregation/classifier_heads.py).
 
 ## Acknowledgements
 
