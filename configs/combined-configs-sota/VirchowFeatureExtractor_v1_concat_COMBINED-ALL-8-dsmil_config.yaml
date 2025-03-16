@@ -1,0 +1,50 @@
+# python d_train_classifier.py --config_path="./configs/combined-configs-sota/VirchowFeatureExtractor_v1_concat_COMBINED-ALL-8-dsmil_config.yaml"
+
+project_name: 'histFM-dependency-mil'
+experiment_name: 'VirchowFeatureExtractor_v1_concat-COMBINED-ALL-8-${instance_embedder_name}-${architecture_name}-${class_connector_name}-${classifier_name}-results'
+
+# hardware_config:
+accelerator: 'cuda'
+gpu_device: 3
+
+# trainvaltest_config:
+train_test_mode: 'train_test'
+trainval_dataset_csv_path: labels/experiment-label-files/DETAILED_COMBINED_THESIS_TRAINVAL_LUAD_LUSC_BENIGN.csv
+test_dataset_csv_path: labels/experiment-label-files/DETAILED_COMBINED_THESIS_TEST_LUAD_LUSC_BENIGN.csv
+
+# data config
+task_type: 'multi_label_classification'
+feats_dir: 'features/VirchowFeatureExtractor_v1_concat/imagenet/patch_224_0.5_mpp/'
+
+# data_and_architecture_shared_config:
+label_group: luad_lusc_benign_luad_patterns
+num_classes: 8
+min_mask_ratio: 0.1
+subsample_num_patches: 5000
+
+# architecture_config:
+feats_size: 2560
+instance_embedder_output_size: 128
+instance_embedder_name: 'linear'
+architecture_name: 'dsmil'
+aggregator_kwargs: # for 'dsmil' architecture
+  q_size: 128
+  q_nonlinear: true # original config had `non_linearity: 1.0`
+  v_size: 128 # needs to be the same as instance_embedder_output_size if v_identity is True
+  v_identity: false
+class_connector_name: transformer
+classifier_name: depthwise_separable_conv
+saved_weights_pth: 'weights/init-${architecture_name}.pth'
+
+# hyperparameters_config:
+num_epochs: 50
+batch_size: 16
+eval_batch_size_size_proportion: 0.125 # 1/8 of batch_size
+limit_num_batches: 1
+optimizer: 'torch.optim.Adam'
+optimizer_kwargs:
+  lr: 0.001
+  betas: [0.9, 0.999] # original DS-MIL parameters
+  weight_decay: 0
+scheduler: null
+scheduler_kwargs: null

@@ -1,0 +1,48 @@
+# python f_train_linear_probing_classifier.py --config_path="configs/combined-configs-slide-linear-probing/PRISM_COMBINED-ALL-8-linear_config.yaml"
+
+project_name: 'histFM-dependency-mil'
+experiment_name: 'PRISM-COMBINED-ALL-8-slide-linear-probing'
+
+# hardware_config:
+accelerator: 'cuda'
+gpu_device: 0
+
+# trainvaltest_config:
+train_test_mode: 'train_test'
+trainval_dataset_csv_path: labels/experiment-label-files/DETAILED_COMBINED_THESIS_TRAINVAL_LUAD_LUSC_BENIGN.csv
+test_dataset_csv_path: labels/experiment-label-files/DETAILED_COMBINED_THESIS_TEST_LUAD_LUSC_BENIGN.csv
+
+# data config
+task_type: 'multi_label_classification'
+feats_dir: 'slide_features/PRISM/imagenet/patch_224_0.5_mpp'
+
+# data_and_architecture_shared_config:
+label_group: luad_lusc_benign_luad_patterns
+num_classes: 8
+min_mask_ratio: 0
+subsample_num_patches: -1
+
+# architecture_config:
+feats_size: 1280
+# for slide-level embeddings, linear_probing: true
+linear_probing: true
+# for patch-level embeddings
+instance_embedder_output_size: -1 # does not play a role when doing linear probing
+instance_embedder_name: ''
+architecture_name: ''
+aggregator_kwargs: {}
+class_connector_name: ''
+classifier_name: ''
+
+# hyperparameters_config:
+num_epochs: 100
+batch_size: 16
+eval_batch_size_size_proportion: -1 # does not play a role when doing linear probing
+limit_num_batches: 1
+optimizer: 'torch.optim.Adam'
+optimizer_kwargs:
+  lr: 0.001
+  betas: [0.9, 0.999] # original DS-MIL parameters
+  weight_decay: 0
+scheduler: null
+scheduler_kwargs: null
