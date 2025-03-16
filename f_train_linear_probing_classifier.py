@@ -223,7 +223,7 @@ def evaluate(
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Train MIL on patch features.')
+    parser = argparse.ArgumentParser(description='Train MIL on slide features.')
     # config path
     parser.add_argument('--base_config_path', type=str, default='./configs/base_config.yaml',
                         help='Path to the base config file')
