@@ -71,7 +71,14 @@ Code for creating
 
 ## Dependency Modelling architecture
 
-Dependency-MIL model can be created using `get_model()` function from [source.models.combined_model](./source/models/combined_model.py)
+Dependency-MIL model can be created using `get_model()` function from [source.feature_aggregation.models.combined_model](./source/feature_aggregation/combined_model.py)
+
+It uses the following components:
+
+- Instance Embedders: `IdentityEmbedder`, `AdaptiveAvgPoolingEmbedder`, `LinearEmbedder`, `SliceEmbedder` from [source.feature_aggregation.instance_embedders](./source/feature_aggregation/instance_embedders.py)
+- Bag Aggregators: `AbmilBagClassifier`, `DsmilBagClassifier` from [source.feature_aggregation.combined_model](./source/feature_aggregation/combined_model.py)
+- Class Connectors: `BahdanauSelfAttention`, `TransformerSelfAttention` from [source.feature_aggregation.class_connectors](./source/feature_aggregation/class_connectors.py)
+- Classifier Heads: `LinearClassifier`, `DSConvClassifier`, `CommunicatingConvClassifier` from [source.feature_aggregation.classifier_heads](./source/feature_aggregation/classifier_heads.py)
 
 ## Acknowledgements
 
