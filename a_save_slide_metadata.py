@@ -29,7 +29,7 @@ assert tiatoolbox.__version__ >= "1.6", (
 from tiatoolbox.wsicore.wsireader import WSIReader
 
 
-DHMC_metadata_path = "/well/rittscher-dart/shared/datasets/lung/DHMC/MetaData_Release_1.0.csv"
+DHMC_metadata_path = "labels/source_copies_for_label_files/DHMC_MetaData_Release_1.0.csv"
 
 class NumpyPosixEncoder(json.JSONEncoder):
     def default(self, obj):
